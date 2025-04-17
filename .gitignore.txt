@@ -1,0 +1,18 @@
+# Përjashto node_modules
+node_modules/
+
+# Përjashto variabla mjedisi (nëse përdor dotenv)
+.env
+
+# Përjashto skedarë të log-imit
+*.log
+
+# Përjashto cache të sistemit operativ dhe editorëve
+.DS_Store
+Thumbs.db
+
+# Për Visual Studio Code
+.vscode/
+
+# Për sistemin e ndërtimit të npm
+package-lock.json

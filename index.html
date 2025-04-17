@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="sq" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Katedralja Digjitale e Dostoevskit - Ekspozitë Ndërmediale e Mjeshtërisë Letrare"/>
+  <meta property="og:image" content="https://example.com/dostoevsky-og.jpg"/>
+  <title>Fyodor Dostoevsky | Ekumena e Shpirtërimit Njerëzor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Cinzel+Decorative:wght@400;700&family=Philosopher:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --primary-accent: #A67C52;
+      --secondary-accent: #6B4F3B;
+      --text-primary: #F2F2F2;
+      --text-secondary: #B3B3B3;
+      --matrix-gradient: linear-gradient(45deg, #1E1E1E, #2C2C2C 50%, #1E1E1E 100%);
+      --hero-overlay: rgba(30, 30, 30, 0.5);
+      --card-bg: rgba(40, 40, 40, 0.95);
+      --nav-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    @keyframes archivalFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes floating {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: var(--matrix-gradient);
+      background-size: 400% 400%;
+      animation: archivalFlow 30s ease infinite;
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Philosopher', sans-serif;
+      color: var(--text-primary);
+      line-height: 1.8;
+      letter-spacing: 0.03em;
+      counter-reset: section;
+    }
+
+    .main-container {
+      max-width: 1600px;
+      margin: 5rem auto;
+      padding: 4rem;
+      background: linear-gradient(
+        160deg,
+        rgba(30, 30, 30, 0.98) 0%,
+        rgba(20, 20, 20, 0.98) 100%
+      );
+      backdrop-filter: blur(25px) saturate(180%);
+      border-radius: 2.5rem;
+      border: 1px solid rgba(166, 124, 82, 0.15);
+      box-shadow: 0 0 80px rgba(166, 124, 82, 0.08),
+        inset 0 0 120px rgba(166, 124, 82, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        circle,
+        rgba(166, 124, 82, 0.03) 0%,
+        rgba(166, 124, 82, 0) 70%
+      );
+      pointer-events: none;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      height: 90vh;
+      min-height: 800px;
+      border-radius: 1.8rem;
+      overflow: hidden;
+      margin-bottom: 4rem;
+      border: 3px solid rgba(166, 124, 82, 0.1);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+      perspective: 2000px;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: grayscale(0.3) contrast(1.1) brightness(0.85) sepia(0.1);
+      transform: translateZ(0);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.8s ease;
+    }
+
+    .hero-section:hover .hero-image {
+      transform: scale(1.03) rotateZ(0.5deg);
+      filter: grayscale(0.2) contrast(1.2) brightness(0.9);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--hero-overlay);
+      mix-blend-mode: soft-light;
+    }
+
+    /* Hero Content Positioned at Lower Bottom Left */
+    .hero-content {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      max-width: 880px;
+      padding: 2.5rem;
+      background: linear-gradient(
+        145deg,
+        rgba(30, 30, 30, 0.4) 0%,
+        rgba(20, 20, 20, 0.5) 100%
+      );
+      backdrop-filter: blur(15px);
+      border-radius: 1.2rem;
+      border: 1px solid rgba(166, 124, 82, 0.2);
+      transform: perspective(1000px) rotateX(2deg) rotateY(-2deg);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-content:hover {
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    }
+
+    .hero-content h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 4.8rem;
+      margin: 0;
+      line-height: 1.05;
+      background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 25px rgba(166, 124, 82, 0.15);
+      padding-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.4rem;
+      color: var(--text-secondary);
+      margin-top: 1.5rem;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;                /* FLEX LAYOUT */
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;                    /* SPACE BETWEEN BUTTONS */
+      background: linear-gradient(
+        145deg,
+        rgba(30, 30, 30, 0.95) 0%,
+        rgba(20, 20, 20, 0.95) 100%
+      );
+      padding: 1.2rem;
+      border-radius: 3rem;
+      margin: 4rem auto;
+      width: fit-content;
+      box-shadow: var(--nav-shadow);
+      position: sticky;
+      top: 2rem;
+      z-index: 1000;
+      backdrop-filter: blur(15px);
+    }
+
+    nav a {
+      display: inline-block; /* Ensures each button is its own bounding box */
+      padding: 1.1rem 2.8rem;
+      /* No margin here; the gap on the nav container handles spacing */
+      border-radius: 3rem;
+      background: linear-gradient(
+        145deg,
+        rgba(166, 124, 82, 0.15) 0%,
+        rgba(166, 124, 82, 0.1) 100%
+      );
+      color: var(--text-primary);
+      transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1.5px solid rgba(166, 124, 82, 0.25);
+      font-weight: 600;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Philosopher', sans-serif;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(166, 124, 82, 0.15),
+        transparent
+      );
+      transition: 0.6s;
+    }
+
+    nav a:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 35px rgba(166, 124, 82, 0.25);
+      background: linear-gradient(
+        145deg,
+        rgba(166, 124, 82, 0.3) 0%,
+        rgba(166, 124, 82, 0.2) 100%
+      );
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    /* Content Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    .content-grid::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(166, 124, 82, 0.3) 50%,
+        transparent 100%
+      );
+      transform: translateX(-50%);
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(166, 124, 82, 0.2);
+      position: relative;
+      overflow: hidden;
+      counter-increment: section;
+    }
+
+    .feature-card::before {
+      content: counter(section);
+      position: absolute;
+      top: -0.8rem;
+      left: -0.8rem;
+      font-size: 4rem;
+      color: rgba(166, 124, 82, 0.1);
+      font-family: 'Cinzel Decorative', serif;
+      z-index: -1;
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      bottom: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        circle,
+        rgba(166, 124, 82, 0.1) 0%,
+        transparent 70%
+      );
+      transition: 0.6s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px) rotateZ(1deg);
+      box-shadow: 0 20px 50px rgba(166, 124, 82, 0.15);
+    }
+
+    .feature-card:hover::after {
+      transform: translate(50%, 50%);
+    }
+
+    .card-icon {
+      font-size: 2.8rem;
+      color: var(--primary-accent);
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    /* Timeline */
+    .timeline-node {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.2rem 0;
+      position: relative;
+    }
+
+    .timeline-node::before {
+      content: '';
+      position: absolute;
+      left: 1.65rem;
+      height: 100%;
+      width: 2px;
+      background: linear-gradient(
+        to bottom,
+        var(--primary-accent),
+        var(--secondary-accent)
+      );
+    }
+
+    .timeline-dot {
+      width: 1.2rem;
+      height: 1.2rem;
+      background: var(--primary-accent);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(166, 124, 82, 0.3);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Quote Section */
+    .quote-section {
+      margin: 6rem 0;
+      padding: 4rem;
+      background: linear-gradient(
+        to right,
+        rgba(166, 124, 82, 0.05) 0%,
+        rgba(20, 20, 20, 0.2) 100%
+      );
+      border-radius: 1.5rem;
+      border-left: 5px solid var(--primary-accent);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Merriweather', serif;
+    }
+
+    .quote-section::before {
+      content: '❝';
+      position: absolute;
+      font-size: 8rem;
+      opacity: 0.1;
+      top: -3rem;
+      left: 2rem;
+      color: var(--primary-accent);
+      font-family: 'Cinzel Decorative', serif;
+    }
+
+    .quote-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        transparent 24px,
+        rgba(166, 124, 82, 0.03) 24px,
+        rgba(166, 124, 82, 0.03) 25px
+      );
+      pointer-events: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .hero-content h1 {
+        font-size: 4rem;
+      }
+      .main-container {
+        padding: 3rem;
+        margin: 3rem auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        height: 70vh;
+        min-height: 500px;
+        border-radius: 1rem;
+      }
+      .hero-content {
+        bottom: 5%;
+        left: 5%;
+        padding: 1.5rem;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      nav {
+        padding: 0.8rem;
+        border-radius: 2rem;
+      }
+      nav a {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .quote-section {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-container {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+        border-radius: 1.5rem;
+      }
+      .hero-content {
+        bottom: 5%;
+        left: 5%;
+        padding: 1rem;
+      }
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Hero Section -->
+    <section class="hero-section" aria-label="Portreti monumental i Dostoevskit">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Vasily_Perov_-_%D0%9F%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82_%D0%A4.%D0%9C.%D0%94%D0%BE%D1%81%D1%82%D0%BE%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_-_Google_Art_Project.jpg"
+        class="hero-image"
+        alt="Portreti i Dostoevskit në teknikën e pasqyrimit psikologjik"
+        loading="lazy"
+      />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>FYODOR MIKHAILOVICH DOSTOEVSKY</h1>
+        <p class="hero-subtitle">Themeluesi i Psikologjisë Ekzistenciale</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav aria-label="Navigacioni kryesor">
+      <a href="biografia.html">Biografia</a>
+      <a href="vepra.html">Vepra</a>
+      <a href="filozofia.html">Filozofia</a>
+      <a href="citimet.html">Citimet</a>
+    </nav>
+
+    <!-- Content Grid -->
+    <div class="content-grid">
+      <!-- Feature Card 1 -->
+      <article class="feature-card">
+        <div class="card-icon">📜</div>
+        <h3>Kanonet Letrare</h3>
+        <ul>
+          <li class="timeline-node">
+            <div class="timeline-dot"></div>
+            <span>Krim dhe Ndëshkim (1866)</span>
+          </li>
+          <li class="timeline-node">
+            <div class="timeline-dot"></div>
+            <span>Idioti (1869)</span>
+          </li>
+          <li class="timeline-node">
+            <div class="timeline-dot"></div>
+            <span>Vëllezërit Karamazov (1880)</span>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Feature Card 2 -->
+      <article class="feature-card">
+        <div class="card-icon">🌌</div>
+        <h3>Konceptet Revolucionare</h3>
+        <ul>
+          <li class="timeline-node">
+            <div class="timeline-dot"></div>
+            <span>Dialektika e Rebelimit</span>
+          </li>
+          <li class="timeline-node">
+            <div class="timeline-dot"></div>
+            <span>Ekzistencializmi Ortodoks</span>
+          </li>
+          <li class="timeline-node">
+            <div class="timeline-dot"></div>
+            <span>Antropologjia Tragjike</span>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Feature Card 3 -->
+      <article class="feature-card">
+        <div class="card-icon">⌛</div>
+        <h3>Kronologjia Historike</h3>
+        <ul>
+          <li class="timeline-node">
+            <div class="timeline-dot"></div>
+            <span>1821: Lindja në Moskë</span>
+          </li>
+          <li class="timeline-node">
+            <div class="timeline-dot"></div>
+            <span>1849: Ekzekutimi i Simuluar</span>
+          </li>
+          <li class="timeline-node">
+            <div class="timeline-dot"></div>
+            <span>1881: Vdekja në Shën Petersburg</span>
+          </li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Quote Section -->
+    <section class="quote-section" aria-label="Citimet transcendente">
+      <blockquote>
+        "Njeriu është një mister që duhet zgjidhur, dhe nëse do t'i kushtosh gjithë jetën zgjidhjes së tij, mos thuaj se ke humbur kohën; unë studioj këtë mister sepse dua të jem njeri."
+        <footer>— F.M. Dostoevsky, Vëllezërit Karamazov</footer>
+      </blockquote>
+    </section>
+  </div>
+</body>
+</html>
