@@ -6,11 +6,6 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: "*" })); // Adjust for security if needed
 
-
-app.get("/", (req, res) => {
-    res.send("✅ Dostoevsky API is running.");
-});
-
 // Load API key from .env file
 const GOOGLE_AI_API_KEY = process.env.GOOGLE_AI_API_KEY;
 
